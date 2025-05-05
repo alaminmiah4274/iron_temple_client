@@ -17,7 +17,7 @@ const Contact = () => {
 						mind <br /> through exercise
 					</p>
 					<Link
-						to="/"
+						to="/register"
 						className="btn px-6 py-4 rounded bg-rose-600 text-white hover:bg-rose-700"
 					>
 						Become Member
