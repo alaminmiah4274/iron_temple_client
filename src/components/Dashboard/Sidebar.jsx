@@ -26,13 +26,13 @@ const Sidebar = () => {
 	];
 	const adminMenus = [
 		{ to: "/dashboard", icon: FiBarChart2, label: "Dashboard" },
-		{ to: "/dashboard/classes", icon: FiPackage, label: "Classes" },
+		{ to: "/dashboard/class", icon: FiPackage, label: "Classes" },
 		{
 			to: "/dashboard/classes/add",
 			icon: FiPlusCircle,
 			label: "Add Classes",
 		},
-		{ to: "/dashboard/memberships", icon: FiTag, label: "Memberships" },
+		{ to: "/dashboard/membership", icon: FiTag, label: "Memberships" },
 		{
 			to: "/dashboard/memberships/add",
 			icon: FiPlusCircle,
@@ -62,7 +62,7 @@ const Sidebar = () => {
 				<div>
 					<Link to="/" className="flex items-center gap-2 mb-6 px-2">
 						<FiShoppingCart className="h-6 w-6" />
-						<h1 className="text-xl font-bold">PhiMart</h1>
+						<h1 className="text-xl font-bold">Iron Temple</h1>
 					</Link>
 				</div>
 

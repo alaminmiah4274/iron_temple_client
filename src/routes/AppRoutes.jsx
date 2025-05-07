@@ -12,6 +12,8 @@ import Bookings from "../components/Dashboard/Bookings";
 import Users from "../pages/Users";
 import Memberships from "../pages/Memberships";
 import DashboardClass from "../pages/DashboardClass";
+import DashboardMembership from "../pages/DashboardMembership";
+import Subscriptions from "../pages/Subscriptions";
 
 const AppRoutes = () => {
 	return (
@@ -39,7 +41,9 @@ const AppRoutes = () => {
 				<Route index element={<Dashboard />} />
 				<Route path="bookings" element={<Bookings />} />
 				<Route path="users" element={<Users />} />
-				<Route path="classes" element={<DashboardClass />} />
+				<Route path="class" element={<DashboardClass />} />
+				<Route path="membership" element={<DashboardMembership />} />
+				<Route path="subscriptions" element={<Subscriptions />} />
 			</Route>
 		</Routes>
 	);

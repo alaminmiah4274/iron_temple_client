@@ -5,8 +5,9 @@ const DashboardClassTable = ({ fitnessClasses }) => {
 		<table className="table table-zebra">
 			<thead>
 				<tr>
-					<th>Class Id</th>
+					<th>Id</th>
 					<th>Class Name</th>
+					<th>Instructor</th>
 					<th>Schedule</th>
 					<th>Duration</th>
 					<th>Capacity</th>

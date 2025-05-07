@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import authApiClient from "../../services/auth_api_client";
 import { format } from "date-fns";
 import Spinner from "../Spinner";
+import useAuthContext from "../../hooks/useAuthContext";
 
 const Bookings = () => {
 	const [bookings, setBookings] = useState([]);
 	const [bookingLoading, setBookingLoading] = useState(false);
+	const { user } = useAuthContext();
 
 	// to fetch bookings
 	useEffect(() => {
@@ -34,7 +36,7 @@ const Bookings = () => {
 							<thead>
 								<tr>
 									<th>Booking Id</th>
-									<th>Customer</th>
+									{user.is_staff ? <th>Customer</th> : ""}
 									<th>Class</th>
 									<th>Status</th>
 									<th>Date</th>
@@ -44,7 +46,11 @@ const Bookings = () => {
 								{bookings.map((booking) => (
 									<tr key={booking.id}>
 										<td>{booking.id}</td>
-										<td>{booking.user.email}</td>
+										{user.is_staff ? (
+											<td>{booking.user.email}</td>
+										) : (
+											""
+										)}
 										<td>{booking.fitness_class.name}</td>
 										<td>
 											<div className="badge badge-success">

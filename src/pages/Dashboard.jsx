@@ -22,7 +22,7 @@ const Dashboard = () => {
 			</div>
 
 			{/* dashboard content */}
-			{user ? <Users /> : <Bookings />}
+			{user.is_staff ? <Users /> : <Bookings />}
 		</div>
 	);
 };

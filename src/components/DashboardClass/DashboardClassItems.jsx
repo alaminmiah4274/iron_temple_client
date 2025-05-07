@@ -5,6 +5,7 @@ const DashboardClassItems = ({ fitnessClasses }) => {
 				<tr key={fitnessClass.id}>
 					<td>{fitnessClass.id}</td>
 					<td>{fitnessClass.name}</td>
+					<td>{fitnessClass.instructor.email}</td>
 					<td>{fitnessClass.schedule}</td>
 					<td>{fitnessClass.duration} mins</td>
 					<td>{fitnessClass.capacity}</td>
