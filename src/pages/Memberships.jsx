@@ -1,5 +1,11 @@
+import Membership from "../components/Memberships/Membership";
+
 const Memberships = () => {
-	return;
+	return (
+		<>
+			<Membership />
+		</>
+	);
 };
 
 export default Memberships;

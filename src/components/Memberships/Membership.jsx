@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import MembershipList from "./MembershipList";
-import axios from "axios";
 import apiClient from "../../services/api_client";
 import Spinner from "../Spinner";
 

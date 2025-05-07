@@ -47,12 +47,3 @@ const ClassPage = () => {
 };
 
 export default ClassPage;
-
-/*
-https://iron-temple-swart.vercel.app/api/v1/
-
-axios
-  .get("https://iron-temple-swart.vercel.app/api/v1/fitness-classes/")
-  .then((res) => setClasses(res.data.slice(0, 3)));
-
-*/
