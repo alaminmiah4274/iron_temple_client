@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
 import authApiClient from "../services/auth_api_client";
 import Spinner from "../components/Spinner";
+import PaymentTable from "../components/Payments/PaymentTable";
 import { format } from "date-fns";
-import ReviewTable from "../components/Reviews/ReviewTable";
 
-const Reviews = () => {
-	const [reviews, setReviews] = useState([]);
+const Payment = () => {
+	const [payments, setPayments] = useState([]);
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		setLoading(true);
 		authApiClient
-			.get("/feedback/")
-			.then((res) => setReviews(res.data))
+			.get("/payments/")
+			.then((res) => setPayments(res.data))
 			.finally(() => setLoading(false));
 	}, []);
 
@@ -23,14 +23,14 @@ const Reviews = () => {
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
-				<h3 className="text-xl">All Reviews</h3>
+				<h3 className="text-xl">Recent Bookings</h3>
 
 				{loading ? (
 					<Spinner />
 				) : (
 					<div className="overflow-x-auto">
-						<ReviewTable
-							reviews={reviews}
+						<PaymentTable
+							payments={payments}
 							formatDate={formatDate}
 						/>
 					</div>
@@ -40,4 +40,4 @@ const Reviews = () => {
 	);
 };
 
-export default Reviews;
+export default Payment;

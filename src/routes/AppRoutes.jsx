@@ -14,6 +14,8 @@ import Memberships from "../pages/Memberships";
 import DashboardClass from "../pages/DashboardClass";
 import DashboardMembership from "../pages/DashboardMembership";
 import Subscriptions from "../pages/Subscriptions";
+import Reviews from "../pages/Reviews";
+import Payments from "/src/pages/Payments.jsx";
 
 const AppRoutes = () => {
 	return (
@@ -44,6 +46,8 @@ const AppRoutes = () => {
 				<Route path="class" element={<DashboardClass />} />
 				<Route path="membership" element={<DashboardMembership />} />
 				<Route path="subscriptions" element={<Subscriptions />} />
+				<Route path="reviews" element={<Reviews />} />
+				<Route path="payments" element={<Payments />} />
 			</Route>
 		</Routes>
 	);

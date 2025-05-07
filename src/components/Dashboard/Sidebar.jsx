@@ -8,6 +8,7 @@ import {
 	FiTag,
 	FiUsers,
 } from "react-icons/fi";
+import { MdOutlinePayment } from "react-icons/md";
 import { BsCartCheckFill } from "react-icons/bs";
 import useAuthContext from "../../hooks/useAuthContext";
 
@@ -22,7 +23,7 @@ const Sidebar = () => {
 			label: "Subscriptions",
 		},
 		{ to: "/dashboard/bookings", icon: BsCartCheckFill, label: "Bookings" },
-		{ to: "dashboard/reviews", icon: FiStar, label: "Reviews" },
+		{ to: "/dashboard/reviews", icon: FiStar, label: "Reviews" },
 	];
 	const adminMenus = [
 		{ to: "/dashboard", icon: FiBarChart2, label: "Dashboard" },
@@ -46,6 +47,11 @@ const Sidebar = () => {
 		{ to: "/dashboard/bookings", icon: BsCartCheckFill, label: "Bookings" },
 		{ to: "/dashboard/reviews", icon: FiStar, label: "Reviews" },
 		{ to: "/dashboard/users", icon: FiUsers, label: "Users" },
+		{
+			to: "/dashboard/payments",
+			icon: MdOutlinePayment,
+			label: "Payments",
+		},
 	];
 
 	const menuItems = user.is_staff ? adminMenus : customerMenus;
