@@ -5,7 +5,7 @@ import ErrorAlert from "../components/ErrorAlert";
 import useAuthContext from "../hooks/useAuthContext";
 
 const Login = () => {
-	const { errorMsg, user, loginUser } = useAuthContext();
+	const { errorMessage, user, loginUser } = useAuthContext();
 	const [loading, setLoading] = useState(false);
 
 	const {
@@ -20,7 +20,7 @@ const Login = () => {
 		setLoading(true);
 		try {
 			const response = await loginUser(data);
-			if (response.success) navigate("/");
+			if (response.success) navigate("/dashboard");
 		} catch (err) {
 			console.log("login failed:", err);
 		} finally {
@@ -32,7 +32,7 @@ const Login = () => {
 		<div className="flex min-h-screen items-center justify-center px-4 py-12 bg-base-200">
 			<div className="card w-full max-w-md bg-base-100 shadow-xl">
 				<div className="card-body">
-					{errorMsg && <ErrorAlert error={errorMsg} />}
+					{errorMessage && <ErrorAlert error={errorMessage} />}
 					<h2 className="card-title text-2xl font-bold">Log In</h2>
 					<p className="text-base-content/70">
 						Enter your email and password to access your account

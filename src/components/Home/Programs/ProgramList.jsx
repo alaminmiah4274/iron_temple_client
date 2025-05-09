@@ -1,24 +1,16 @@
 const ProgramList = ({ program }) => {
 	return (
-		<div className="card bg-white shadow-sm">
-			{/* PROGRAM (FITNESS CLASS) IMAGE */}
-			<figure className="px-10 pt-10">
+		<div className="relative card shadow-sm overflow-hidden hover:brightness-80">
+			<figure>
 				<img
 					src={program.images[0].image}
-					alt="Shoes"
-					className="rounded-xl"
+					alt="fitness class"
+					className="w-full h-full object-cover absolute inset-0 z-0 brightness-30"
 				/>
 			</figure>
-
-			{/* PROGRAM (FITNESS CLASS) OTHERS INFO */}
-			<div className="card-body items-center text-center space-y-2">
+			<div className="relative z-10 flex flex-col justify-end h-64 p-4 text-white">
 				<h2 className="card-title">{program.name}</h2>
 				<p>{program.description}</p>
-				<div className="card-actions">
-					<button className="btn rounded bg-rose-500 text-white hover:bg-rose-600">
-						Book Now
-					</button>
-				</div>
 			</div>
 		</div>
 	);

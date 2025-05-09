@@ -12,7 +12,7 @@ const Contact = () => {
 					<h1 className="text-4xl md:text-5xl font-semibold">
 						JOIN OUR GYM
 					</h1>
-					<p className="text-xl md:text-2xl">
+					<p className="text-lg md:text-xl">
 						Become healthy and fit <br /> strengthen your body &
 						mind <br /> through exercise
 					</p>

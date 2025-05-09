@@ -23,7 +23,7 @@ const Reviews = () => {
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
-				<h3 className="text-xl">All Reviews</h3>
+				<h3 className="text-xl">Reviews</h3>
 
 				{loading ? (
 					<Spinner />

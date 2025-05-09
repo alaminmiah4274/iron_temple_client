@@ -17,7 +17,7 @@ const Users = () => {
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
-				<h3 className="text-xl">All Users</h3>
+				<h3 className="text-xl">Users</h3>
 
 				{userLoading ? (
 					<Spinner />

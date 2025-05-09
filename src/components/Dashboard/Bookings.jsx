@@ -26,7 +26,7 @@ const Bookings = () => {
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
-				<h3 className="text-xl">Recent Bookings</h3>
+				<h3 className="text-xl">Bookings</h3>
 
 				{bookingLoading ? (
 					<Spinner />

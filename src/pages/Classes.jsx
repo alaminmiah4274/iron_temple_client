@@ -1,9 +1,9 @@
-import ClassPage from "../components/Classes/ClassPage";
+import FitnessClassPage from "../components/FitnessClasses/FitnessClassPage";
 
 const Classes = () => {
 	return (
 		<div>
-			<ClassPage />
+			<FitnessClassPage />
 		</div>
 	);
 };

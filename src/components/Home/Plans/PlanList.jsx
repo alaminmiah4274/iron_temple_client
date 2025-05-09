@@ -17,7 +17,7 @@ const PlanList = ({ plan }) => {
 				<h2 className="card-title">{plan.name}</h2>
 				<p>Price: ${plan.price}</p>
 				<div className="card-actions">
-					<button className="btn rounded bg-rose-500 text-white hover:bg-rose-600">
+					<button className="btn rounded bg-rose-500 text-xs md:text-sm text-white hover:bg-rose-600">
 						Subscribe
 					</button>
 				</div>

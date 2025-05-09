@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router";
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
-import Classes from "../pages/Classes";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ActivateAccount from "../components/Registration/ActivateAccount";
@@ -13,9 +12,14 @@ import Users from "../pages/Users";
 import Memberships from "../pages/Memberships";
 import DashboardClass from "../pages/DashboardClass";
 import DashboardMembership from "../pages/DashboardMembership";
-import Subscriptions from "../pages/Subscriptions";
 import Reviews from "../pages/Reviews";
 import Payments from "/src/pages/Payments.jsx";
+import AddClass from "../pages/AddClass";
+import AddMembership from "../pages/AddMembership";
+import Attendance from "../pages/Attendance";
+import Subscriptions from "../pages/Subscriptions";
+import AddAttendance from "../pages/AddAttendance";
+import Classes from "../pages/Classes";
 
 const AppRoutes = () => {
 	return (
@@ -48,6 +52,10 @@ const AppRoutes = () => {
 				<Route path="subscriptions" element={<Subscriptions />} />
 				<Route path="reviews" element={<Reviews />} />
 				<Route path="payments" element={<Payments />} />
+				<Route path="class/add" element={<AddClass />} />
+				<Route path="membership/add" element={<AddMembership />} />
+				<Route path="attendance" element={<Attendance />} />
+				<Route path="attendance/add" element={<AddAttendance />} />
 			</Route>
 		</Routes>
 	);

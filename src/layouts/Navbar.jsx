@@ -40,16 +40,16 @@ const Navbar = () => {
 							<Link to="/">Home</Link>
 						</li>
 						<li>
-							<Link to="/">Classes</Link>
+							<Link to="/classes">Classes</Link>
 						</li>
 						<li>
-							<Link to="/">Memberships</Link>
+							<Link to="/memberships">Memberships</Link>
 						</li>
 						<li>
-							<Link to="/">About</Link>
+							<Link to="#">About</Link>
 						</li>
 						<li>
-							<Link to="/">Contact</Link>
+							<Link to="#">Contact</Link>
 						</li>
 					</ul>
 				</div>
@@ -71,10 +71,10 @@ const Navbar = () => {
 						<Link to="/memberships">Memberships</Link>
 					</li>
 					<li>
-						<Link to="/">About</Link>
+						<Link to="#">About</Link>
 					</li>
 					<li>
-						<Link to="/">Contact</Link>
+						<Link to="#">Contact</Link>
 					</li>
 				</ul>
 			</div>
@@ -103,9 +103,6 @@ const Navbar = () => {
 							</li>
 							<li>
 								<Link to="/dashboard">Dashboard</Link>
-							</li>
-							<li>
-								<a>Settings</a>
 							</li>
 							<li>
 								<a onClick={logoutUser}>Logout</a>

@@ -18,7 +18,7 @@ const DashboardClass = () => {
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
-				<h3 className="text-xl">All Classes</h3>
+				<h3 className="text-xl">Classes</h3>
 
 				{classesLoading ? (
 					<Spinner />

@@ -1,7 +1,7 @@
 import { FiPackage, FiShoppingCart, FiStar, FiUsers } from "react-icons/fi";
 import InfoCard from "../components/Dashboard/InfoCard";
-import Bookings from "../components/Dashboard/Bookings";
 import useAuthContext from "../hooks/useAuthContext";
+import Attendance from "./Attendance";
 import Users from "./Users";
 
 const Dashboard = () => {
@@ -22,7 +22,7 @@ const Dashboard = () => {
 			</div>
 
 			{/* dashboard content */}
-			{user.is_staff ? <Users /> : <Bookings />}
+			{user.is_staff ? <Users /> : <Attendance />}
 		</div>
 	);
 };

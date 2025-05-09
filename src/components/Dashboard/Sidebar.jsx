@@ -8,7 +8,7 @@ import {
 	FiTag,
 	FiUsers,
 } from "react-icons/fi";
-import { MdOutlinePayment } from "react-icons/md";
+import { MdOutlinePayment, MdCoPresent } from "react-icons/md";
 import { BsCartCheckFill } from "react-icons/bs";
 import useAuthContext from "../../hooks/useAuthContext";
 
@@ -29,15 +29,15 @@ const Sidebar = () => {
 		{ to: "/dashboard", icon: FiBarChart2, label: "Dashboard" },
 		{ to: "/dashboard/class", icon: FiPackage, label: "Classes" },
 		{
-			to: "/dashboard/classes/add",
+			to: "/dashboard/class/add",
 			icon: FiPlusCircle,
-			label: "Add Classes",
+			label: "Add Class",
 		},
 		{ to: "/dashboard/membership", icon: FiTag, label: "Memberships" },
 		{
-			to: "/dashboard/memberships/add",
+			to: "/dashboard/membership/add",
 			icon: FiPlusCircle,
-			label: "Add Memberships",
+			label: "Add Membership",
 		},
 		{
 			to: "/dashboard/subscriptions",
@@ -51,6 +51,16 @@ const Sidebar = () => {
 			to: "/dashboard/payments",
 			icon: MdOutlinePayment,
 			label: "Payments",
+		},
+		{
+			to: "/dashboard/attendance",
+			icon: MdCoPresent,
+			label: "Attendance",
+		},
+		{
+			to: "/dashboard/attendance/add",
+			icon: FiPlusCircle,
+			label: "Add Attendance",
 		},
 	];
 

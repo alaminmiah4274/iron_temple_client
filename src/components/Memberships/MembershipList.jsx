@@ -2,7 +2,7 @@ const MembershipList = ({ membership }) => {
 	return (
 		<div className="card bg-white shadow-sm">
 			{/* image of the plan (membership home) */}
-			<figure className="px-10 pt-10">
+			<figure className="md:px-10 md:pt-10 hover:brightness-80">
 				<img
 					src={membership.images[0].image}
 					alt="membership plans"
@@ -13,9 +13,12 @@ const MembershipList = ({ membership }) => {
 			{/* plan info */}
 			<div className="card-body items-center text-center space-y-2">
 				<h2 className="card-title">{membership.name}</h2>
-				<p>Price: ${membership.price}</p>
+				<p>
+					<span className="font-semibold">Price:</span> $
+					{membership.price}
+				</p>
 				<div className="card-actions">
-					<button className="btn rounded bg-rose-500 text-white hover:bg-rose-600">
+					<button className="btn rounded bg-rose-500 text-xs md:text-sm text-white hover:bg-rose-600">
 						Subscribe
 					</button>
 				</div>

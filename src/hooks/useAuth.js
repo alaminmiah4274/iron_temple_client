@@ -65,8 +65,7 @@ const useAuth = () => {
 
 			return { success: true };
 		} catch (err) {
-			console.log(err);
-
+			setErrorMessage(err.response?.data?.detail);
 			return { success: false };
 		}
 	};
@@ -96,7 +95,7 @@ const useAuth = () => {
 		}
 	};
 
-	return { user, loginUser, logoutUser, registerUser };
+	return { errorMessage, user, loginUser, logoutUser, registerUser };
 };
 
 export default useAuth;

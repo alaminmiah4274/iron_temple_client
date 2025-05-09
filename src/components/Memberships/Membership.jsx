@@ -2,40 +2,69 @@ import { useEffect, useState } from "react";
 import MembershipList from "./MembershipList";
 import apiClient from "../../services/api_client";
 import Spinner from "../Spinner";
+import MembershipSearchField from "./MembershipSearchField";
+import MembershipPagination from "./MembershipPagination";
+
+const ITEMS_PER_PAGE = 6;
 
 const Membership = () => {
 	const [memberships, setMemberships] = useState([]);
 	const [membershipLoading, setMembershipLoading] = useState(false);
+	const [totalPages, setTotalPages] = useState(0);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [searchQuery, setSearchQuery] = useState("");
 
 	// fetching membership plans
 	useEffect(() => {
 		setMembershipLoading(true);
 		apiClient
-			.get("/memberships/")
-			.then((res) => setMemberships(res.data))
+			.get(`/memberships/?search=${searchQuery}`)
+			.then((res) => {
+				setMemberships(res.data);
+				setTotalPages(Math.ceil(res.data.length / ITEMS_PER_PAGE));
+			})
 			.finally(() => setMembershipLoading(false));
-	}, []);
+	}, [searchQuery]);
+
+	// sliced membership items for pagination
+	const currentItems = memberships.slice(
+		(currentPage - 1) * ITEMS_PER_PAGE,
+		currentPage * ITEMS_PER_PAGE
+	);
 
 	return (
-		<div className="my-[100px] px-10">
-			<div className="flex flex-col items-center justify-center mb-10">
-				<h1 className="text-4xl md:text-5xl text-center font-semibold mb-5 md:mb-10">
+		<div className="my-[50px] px-10">
+			<div className="flex flex-col md:flex-row items-center justify-between mb-15">
+				<h1 className="text-2xl md:text-4xl text-center font-semibold mb-5 md:mb-0">
 					Our Membership Plans
 				</h1>
 
-				<hr className="text-rose-500 border-2 w-[80px] md:w-[150px] mb-5 md:mb-10" />
+				{/* Search Field */}
+				<MembershipSearchField
+					searchQuery={searchQuery}
+					setSearchQuery={setSearchQuery}
+				/>
 			</div>
 
+			{/* cards */}
 			{membershipLoading ? (
 				<Spinner />
 			) : (
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-					{memberships.map((membership) => (
-						<MembershipList
-							key={membership.id}
-							membership={membership}
-						/>
-					))}
+				<div>
+					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+						{currentItems.map((membership) => (
+							<MembershipList
+								key={membership.id}
+								membership={membership}
+							/>
+						))}
+					</div>
+
+					<MembershipPagination
+						totalPages={totalPages}
+						currrentPage={currentPage}
+						handleCurrentPage={setCurrentPage}
+					/>
 				</div>
 			)}
 		</div>

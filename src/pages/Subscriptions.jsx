@@ -18,7 +18,7 @@ const Subscriptions = () => {
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
-				<h3 className="text-xl">All Subscriptions</h3>
+				<h3 className="text-xl">Subscriptions</h3>
 
 				{loading ? (
 					<Spinner />

@@ -1,38 +1,30 @@
 import { useEffect, useState } from "react";
 import authApiClient from "../services/auth_api_client";
 import Spinner from "../components/Spinner";
-import PaymentTable from "../components/Payments/PaymentTable";
-import { format } from "date-fns";
+import AttendanceTable from "../components/Attendance/AttendanceTable";
 
-const Payment = () => {
-	const [payments, setPayments] = useState([]);
+const Attendance = () => {
+	const [attendances, setAttendances] = useState([]);
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		setLoading(true);
 		authApiClient
-			.get("/payments/")
-			.then((res) => setPayments(res.data))
+			.get("/attendance/")
+			.then((res) => setAttendances(res.data))
 			.finally(() => setLoading(false));
 	}, []);
-
-	const formatDate = (date) => {
-		return format(new Date(date), "MMMM d, yyyy");
-	};
 
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
-				<h3 className="text-xl">Payments</h3>
+				<h3 className="text-xl">Attendance</h3>
 
 				{loading ? (
 					<Spinner />
 				) : (
 					<div className="overflow-x-auto">
-						<PaymentTable
-							payments={payments}
-							formatDate={formatDate}
-						/>
+						<AttendanceTable attendances={attendances} />
 					</div>
 				)}
 			</div>
@@ -40,4 +32,4 @@ const Payment = () => {
 	);
 };
 
-export default Payment;
+export default Attendance;

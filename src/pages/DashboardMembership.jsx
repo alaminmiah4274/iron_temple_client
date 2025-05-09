@@ -18,7 +18,7 @@ const DashboardMembership = () => {
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
-				<h3 className="text-xl">All Memberships</h3>
+				<h3 className="text-xl">Memberships</h3>
 
 				{membershipLoading ? (
 					<Spinner />
