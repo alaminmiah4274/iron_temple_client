@@ -4,6 +4,7 @@ import apiClient from "../../services/api_client";
 import Spinner from "../Spinner";
 import MembershipSearchField from "./MembershipSearchField";
 import MembershipPagination from "./MembershipPagination";
+import authApiClient from "../../services/auth_api_client";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -32,6 +33,23 @@ const Membership = () => {
 		currentPage * ITEMS_PER_PAGE
 	);
 
+	// to subscribe membership
+	const handleMembershipSubscription = async (membershipId) => {
+		try {
+			const response = await authApiClient.post("/subscriptions/", {
+				membership_id: membershipId,
+			});
+			console.log(response);
+			if (response.status === 201) {
+				alert("Your subscription is done");
+			}
+		} catch (err) {
+			if (err.response.status === 400) {
+				alert(err.response?.data[0]);
+			}
+		}
+	};
+
 	return (
 		<div className="my-[50px] px-10">
 			<div className="flex flex-col md:flex-row items-center justify-between mb-15">
@@ -56,6 +74,9 @@ const Membership = () => {
 							<MembershipList
 								key={membership.id}
 								membership={membership}
+								handleSubscription={
+									handleMembershipSubscription
+								}
 							/>
 						))}
 					</div>

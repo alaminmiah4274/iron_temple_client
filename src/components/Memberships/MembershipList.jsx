@@ -1,4 +1,4 @@
-const MembershipList = ({ membership }) => {
+const MembershipList = ({ membership, handleSubscription }) => {
 	return (
 		<div className="card bg-white shadow-sm">
 			{/* image of the plan (membership home) */}
@@ -18,7 +18,10 @@ const MembershipList = ({ membership }) => {
 					{membership.price}
 				</p>
 				<div className="card-actions">
-					<button className="btn rounded bg-rose-500 text-xs md:text-sm text-white hover:bg-rose-600">
+					<button
+						onClick={() => handleSubscription(membership.id)}
+						className="btn rounded bg-rose-500 text-xs md:text-sm text-white hover:bg-rose-600"
+					>
 						Subscribe
 					</button>
 				</div>
