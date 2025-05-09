@@ -1,4 +1,4 @@
-const FitnessClassList = ({ classInfo }) => {
+const FitnessClassList = ({ classInfo, handleBooking }) => {
 	return (
 		<div className="card bg-white shadow-sm">
 			<figure className="md:px-10 md:pt-10 hover:brightness-80">
@@ -27,7 +27,10 @@ const FitnessClassList = ({ classInfo }) => {
 					{classInfo.schedule}
 				</p>
 				<div className="card-actions">
-					<button className="btn rounded bg-rose-600 text-xs md:text-sm text-white hover:bg-rose-700">
+					<button
+						onClick={() => handleBooking(classInfo.id)}
+						className="btn rounded bg-rose-600 text-xs md:text-sm text-white hover:bg-rose-700"
+					>
 						Book Now
 					</button>
 				</div>

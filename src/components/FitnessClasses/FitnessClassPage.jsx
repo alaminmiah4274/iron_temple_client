@@ -4,6 +4,7 @@ import Spinner from "../Spinner";
 import FitnessSearchField from "./FitnessSearchField";
 import FitnessPagination from "./FitnessPagination";
 import FitnessClassList from "./FitnessClassList";
+import authApiClient from "../../services/auth_api_client";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -26,10 +27,28 @@ const FitnessClassPage = () => {
 			.finally(() => setClassLoading(false));
 	}, [searchQuery]);
 
+	// to slice fitness class for pagination purpose
 	const currentItems = classes.slice(
 		(currentPage - 1) * ITEMS_PER_PAGE,
 		currentPage * ITEMS_PER_PAGE
 	);
+
+	// to book fitness class
+	const handleFitnessClassBooking = async (classId) => {
+		try {
+			const response = await authApiClient.post("/bookings/", {
+				fitness_class: classId,
+			});
+
+			if (response.status === 200) {
+				alert(response.data.status);
+			}
+		} catch (err) {
+			if (err.status === 400) {
+				alert(err.response?.data?.non_field_errors[0]);
+			}
+		}
+	};
 
 	return (
 		<section className="my-[80px] px-10">
@@ -56,6 +75,7 @@ const FitnessClassPage = () => {
 								<FitnessClassList
 									key={classInfo.id}
 									classInfo={classInfo}
+									handleBooking={handleFitnessClassBooking}
 								/>
 							))}
 						</div>
