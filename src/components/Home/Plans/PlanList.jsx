@@ -15,12 +15,9 @@ const PlanList = ({ plan }) => {
 			{/* plan info */}
 			<div className="card-body items-center text-center space-y-2">
 				<h2 className="card-title">{plan.name}</h2>
-				<p>Price: ${plan.price}</p>
-				<div className="card-actions">
-					<button className="btn rounded bg-rose-500 text-xs md:text-sm text-white hover:bg-rose-600">
-						Subscribe
-					</button>
-				</div>
+				<p>
+					<span className="font-semibold">Price:</span> ${plan.price}
+				</p>
 			</div>
 		</div>
 	);

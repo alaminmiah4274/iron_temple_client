@@ -7,7 +7,6 @@ import ActivateAccount from "../components/Registration/ActivateAccount";
 import PrivateRoute from "../components/PrivateRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Dashboard from "../pages/Dashboard";
-import Bookings from "../components/Dashboard/Bookings";
 import Users from "../pages/Users";
 import Memberships from "../pages/Memberships";
 import DashboardClass from "../pages/DashboardClass";
@@ -21,6 +20,7 @@ import Subscriptions from "../pages/Subscriptions";
 import AddAttendance from "../pages/AddAttendance";
 import Classes from "../pages/Classes";
 import Profile from "../pages/Profile";
+import Bookings from "../pages/Bookings";
 
 const AppRoutes = () => {
 	return (

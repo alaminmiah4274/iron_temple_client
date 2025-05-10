@@ -23,7 +23,7 @@ const Attendance = () => {
 				{loading ? (
 					<Spinner />
 				) : (
-					<div className="overflow-x-auto">
+					<div className="overflow-x-auto text-xs md:text-lg">
 						<AttendanceTable attendances={attendances} />
 					</div>
 				)}
