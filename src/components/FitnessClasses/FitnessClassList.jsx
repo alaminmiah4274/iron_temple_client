@@ -1,9 +1,15 @@
+import default_img from "../../assets/logo/default_img.jpg";
+
 const FitnessClassList = ({ classInfo, handleBooking }) => {
+	const img = classInfo.images[0]?.image
+		? classInfo.images[0].image
+		: default_img;
+
 	return (
 		<div className="card bg-white shadow-sm">
 			<figure className="md:px-10 md:pt-10 hover:brightness-80">
 				<img
-					src={classInfo.images[0].image}
+					src={img}
 					alt="class image"
 					className="rounded-md w-full h-[200px]"
 				/>
