@@ -20,6 +20,7 @@ import Attendance from "../pages/Attendance";
 import Subscriptions from "../pages/Subscriptions";
 import AddAttendance from "../pages/AddAttendance";
 import Classes from "../pages/Classes";
+import Profile from "../pages/Profile";
 
 const AppRoutes = () => {
 	return (
@@ -56,6 +57,7 @@ const AppRoutes = () => {
 				<Route path="membership/add" element={<AddMembership />} />
 				<Route path="attendance" element={<Attendance />} />
 				<Route path="attendance/add" element={<AddAttendance />} />
+				<Route path="profile" element={<Profile />} />
 			</Route>
 		</Routes>
 	);

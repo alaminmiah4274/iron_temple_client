@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import apiClient from "../services/api_client";
+import authApiClient from "../services/auth_api_client";
 
 const useAuth = () => {
 	const [user, setUser] = useState(null);
@@ -23,11 +24,11 @@ const useAuth = () => {
 			const errorMessage = Object.values(error.response.data)
 				.flat()
 				.join("\n");
-			setErrorMsg(errorMessage);
+			setErrorMessage(errorMessage);
 
 			return { success: false, message: defaultMessage };
 		} else {
-			setErrorMsg(defaultMessage);
+			setErrorMessage(defaultMessage);
 
 			return { success: false, message: defaultMessage };
 		}
@@ -78,7 +79,7 @@ const useAuth = () => {
 		localStorage.removeItem("authTokens");
 	};
 
-	// to register an user
+	// to register a new user
 	const registerUser = async (userData) => {
 		setErrorMessage("");
 
@@ -95,7 +96,44 @@ const useAuth = () => {
 		}
 	};
 
-	return { errorMessage, user, loginUser, logoutUser, registerUser };
+	// to update an user
+	const updateUserProfile = async (data) => {
+		setErrorMessage("");
+		setSuccessMessage("");
+
+		try {
+			await authApiClient.put("/auth/users/me/", data);
+
+			setSuccessMessage("Profile successfully updated");
+		} catch (err) {
+			return handleAPIError(err);
+		}
+	};
+
+	// to change user password
+	const changePassword = async (data) => {
+		setErrorMessage("");
+		setSuccessMessage("");
+
+		try {
+			await authApiClient.post("/auth/users/set_password/", data);
+
+			setSuccessMessage("Password changed successfully");
+		} catch (err) {
+			return handleAPIError(err);
+		}
+	};
+
+	return {
+		successMessage,
+		errorMessage,
+		user,
+		loginUser,
+		logoutUser,
+		registerUser,
+		updateUserProfile,
+		changePassword,
+	};
 };
 
 export default useAuth;

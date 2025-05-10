@@ -40,7 +40,7 @@ const DashboardNavbar = ({ sidebarOpen }) => {
 						className="menu menu-sm dropdown-content mt-3 text-white z-[1] p-2 shadow bg-rose-600 rounded-md w-52"
 					>
 						<li>
-							<Link to="/profile">Profile</Link>
+							<Link to="/dashboard/profile">Profile</Link>
 						</li>
 						<li>
 							<button onClick={logoutUser}>Logout</button>

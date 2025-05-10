@@ -99,7 +99,7 @@ const Navbar = () => {
 							className="menu menu-sm dropdown-content bg-rose-600 rounded-md mt-4 w-52 shadow"
 						>
 							<li>
-								<a>Profile</a>
+								<Link to="/dashboard/profile">Profile</Link>
 							</li>
 							<li>
 								<Link to="/dashboard">Dashboard</Link>
