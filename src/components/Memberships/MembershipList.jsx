@@ -1,10 +1,16 @@
+import default_img from "../../assets/logo/default_img.jpg";
+
 const MembershipList = ({ membership, handleSubscription }) => {
+	const membershipImg = membership.images[0]?.image
+		? membership.images[0].image
+		: default_img;
+
 	return (
 		<div className="card bg-white shadow-sm">
 			{/* image of the plan (membership home) */}
 			<figure className="md:px-10 md:pt-10 hover:brightness-80">
 				<img
-					src={membership.images[0].image}
+					src={membershipImg}
 					alt="membership plans"
 					className="rounded-xl"
 				/>

@@ -13,6 +13,7 @@ const AddClass = () => {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm();
 
@@ -44,6 +45,8 @@ const AddClass = () => {
 		} catch (err) {
 			console.log(err);
 		}
+
+		reset();
 	};
 
 	// handle image change

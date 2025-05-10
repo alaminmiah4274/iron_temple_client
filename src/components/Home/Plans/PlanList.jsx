@@ -1,5 +1,3 @@
-import default_img from "/src/assets/default_img.jpg";
-
 const PlanList = ({ plan }) => {
 	return (
 		<div className="card bg-white shadow-sm">
