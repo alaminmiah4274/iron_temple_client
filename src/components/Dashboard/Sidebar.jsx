@@ -24,6 +24,11 @@ const Sidebar = () => {
 		},
 		{ to: "/dashboard/bookings", icon: BsCartCheckFill, label: "Bookings" },
 		{ to: "/dashboard/reviews", icon: FiStar, label: "Reviews" },
+		{
+			to: "/dashboard/payment",
+			icon: MdOutlinePayment,
+			label: "Make Payment",
+		},
 	];
 	const adminMenus = [
 		{ to: "/dashboard", icon: FiBarChart2, label: "Dashboard" },
