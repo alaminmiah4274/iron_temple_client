@@ -6,6 +6,7 @@ const useAuth = () => {
 	const [user, setUser] = useState(null);
 	const [errorMessage, setErrorMessage] = useState("");
 	const [successMessage, setSuccessMessage] = useState("");
+	const [loading, setLoading] = useState(false);
 
 	// to get the authentication token
 	const getToken = () => {
@@ -36,6 +37,7 @@ const useAuth = () => {
 
 	// to get the current user
 	const fetchUserProfile = async () => {
+		setLoading(true);
 		setErrorMessage("");
 		try {
 			const response = await apiClient.get("/auth/users/me/", {
@@ -43,6 +45,7 @@ const useAuth = () => {
 			});
 
 			setUser(response.data);
+			setLoading(false);
 		} catch (err) {
 			setErrorMessage(err.response?.data?.detail);
 		}
@@ -125,6 +128,7 @@ const useAuth = () => {
 	};
 
 	return {
+		loading,
 		successMessage,
 		errorMessage,
 		user,

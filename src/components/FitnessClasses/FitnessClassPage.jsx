@@ -5,6 +5,7 @@ import FitnessSearchField from "./FitnessSearchField";
 import FitnessPagination from "./FitnessPagination";
 import FitnessClassList from "./FitnessClassList";
 import authApiClient from "../../services/auth_api_client";
+import useAuthContext from "../../hooks/useAuthContext";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -14,6 +15,7 @@ const FitnessClassPage = () => {
 	const [totalPages, setTotalPages] = useState(0);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [searchQuery, setSearchQuery] = useState("");
+	const { user } = useAuthContext();
 
 	// fetching fitness class info
 	useEffect(() => {
@@ -35,18 +37,22 @@ const FitnessClassPage = () => {
 
 	// to book fitness class
 	const handleFitnessClassBooking = async (classId) => {
-		try {
-			const response = await authApiClient.post("/bookings/", {
-				fitness_class: classId,
-			});
+		if (user) {
+			try {
+				const response = await authApiClient.post("/bookings/", {
+					fitness_class: classId,
+				});
 
-			if (response.status === 200) {
-				alert(response.data.status);
+				if (response.status === 200) {
+					alert(response.data.status);
+				}
+			} catch (err) {
+				if (err.status === 400) {
+					alert(err.response?.data?.non_field_errors[0]);
+				}
 			}
-		} catch (err) {
-			if (err.status === 400) {
-				alert(err.response?.data?.non_field_errors[0]);
-			}
+		} else {
+			alert("You need to log in");
 		}
 	};
 

@@ -5,6 +5,7 @@ import Spinner from "../Spinner";
 import MembershipSearchField from "./MembershipSearchField";
 import MembershipPagination from "./MembershipPagination";
 import authApiClient from "../../services/auth_api_client";
+import useAuthContext from "../../hooks/useAuthContext";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -14,6 +15,7 @@ const Membership = () => {
 	const [totalPages, setTotalPages] = useState(0);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [searchQuery, setSearchQuery] = useState("");
+	const { user } = useAuthContext();
 
 	// fetching membership plans
 	useEffect(() => {
@@ -35,18 +37,22 @@ const Membership = () => {
 
 	// to subscribe membership
 	const handleMembershipSubscription = async (membershipId) => {
-		try {
-			const response = await authApiClient.post("/subscriptions/", {
-				membership_id: membershipId,
-			});
-			console.log(response);
-			if (response.status === 201) {
-				alert("Your subscription is done");
+		if (user) {
+			try {
+				const response = await authApiClient.post("/subscriptions/", {
+					membership_id: membershipId,
+				});
+				console.log(response);
+				if (response.status === 201) {
+					alert("Your subscription is done");
+				}
+			} catch (err) {
+				if (err.response.status === 400) {
+					alert(err.response?.data[0]);
+				}
 			}
-		} catch (err) {
-			if (err.response.status === 400) {
-				alert(err.response?.data[0]);
-			}
+		} else {
+			alert("You need to log in");
 		}
 	};
 

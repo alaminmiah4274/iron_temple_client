@@ -3,9 +3,9 @@ import useAuthContext from "/src/hooks/useAuthContext.js";
 import { Navigate } from "react-router";
 
 const PrivateRoute = ({ children }) => {
-	const { user } = useAuthContext();
+	const { user, loading } = useAuthContext();
 
-	if (user === null) return <Spinner />;
+	if (loading) return <Spinner />;
 
 	return user ? children : <Navigate to="/login" />;
 };

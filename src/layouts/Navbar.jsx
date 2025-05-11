@@ -110,16 +110,16 @@ const Navbar = () => {
 						</ul>
 					</div>
 				) : (
-					<div className="space-x-3">
+					<div className="flex items-center justify-evenly">
 						<Link
 							to="/login"
-							className="btn rounded bg-rose-600 text-white"
+							className="btn w-1/3 text-[10px] md:text-sm rounded bg-rose-600 hover:bg-rose-700 text-white"
 						>
 							Login
 						</Link>
 						<Link
 							to="/register"
-							className="btn rounded bg-rose-600 text-white"
+							className="btn w-1/2 text-[10px] md:text-sm rounded bg-rose-600 hover:bg-rose-700 text-white"
 						>
 							Register
 						</Link>
