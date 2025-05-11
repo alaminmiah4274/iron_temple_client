@@ -25,7 +25,7 @@ const Sidebar = () => {
 		{ to: "/dashboard/bookings", icon: BsCartCheckFill, label: "Bookings" },
 		{ to: "/dashboard/reviews", icon: FiStar, label: "Reviews" },
 		{
-			to: "/dashboard/payment",
+			to: "/dashboard/makePayment",
 			icon: MdOutlinePayment,
 			label: "Make Payment",
 		},

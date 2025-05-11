@@ -6,6 +6,7 @@ import MembershipSearchField from "./MembershipSearchField";
 import MembershipPagination from "./MembershipPagination";
 import authApiClient from "../../services/auth_api_client";
 import useAuthContext from "../../hooks/useAuthContext";
+import { useNavigate } from "react-router";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -16,6 +17,7 @@ const Membership = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [searchQuery, setSearchQuery] = useState("");
 	const { user } = useAuthContext();
+	const navigate = useNavigate();
 
 	// fetching membership plans
 	useEffect(() => {
@@ -46,6 +48,7 @@ const Membership = () => {
 				if (response.status === 201) {
 					alert("Your subscription is done");
 				}
+				navigate("/dashboard/makePayment");
 			} catch (err) {
 				if (err.response.status === 400) {
 					alert(err.response?.data[0]);
