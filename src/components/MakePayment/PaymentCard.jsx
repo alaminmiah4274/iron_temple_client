@@ -1,6 +1,33 @@
+import { useState } from "react";
 import SubTable from "./SubTable";
+import authApiClient from "../../services/auth_api_client";
 
 const PaymentCard = ({ sub, onCancel }) => {
+	const [paymentLoading, setPaymentLoading] = useState(false);
+
+	// handling subscription payment
+	const handlePayment = async () => {
+		setPaymentLoading(true);
+		try {
+			const response = await authApiClient.post("/payment/initiate/", {
+				amount: sub.membership.price,
+				subscriptionId: sub.id,
+			});
+
+			// status: ---
+
+			if (response.data?.payment_url) {
+				window.location.href = response.data.payment_url;
+			} else {
+				alert("Payment failed");
+			}
+		} catch (err) {
+			console.log(err);
+		} finally {
+			setPaymentLoading(false);
+		}
+	};
+
 	return (
 		<div className="bg-white rounded-lg shadow-lg mb-8 overflow-hidden">
 			<div className="bg-gray-100 p-6">
@@ -32,8 +59,12 @@ const PaymentCard = ({ sub, onCancel }) => {
 						<span>${sub.membership.price}</span>
 					</div>
 				</div>
-				<button className="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors">
-					Pay Now
+				<button
+					onClick={handlePayment}
+					disabled={paymentLoading}
+					className="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+				>
+					{paymentLoading ? "Processing..." : "Pay Now"}
 				</button>
 			</div>
 		</div>

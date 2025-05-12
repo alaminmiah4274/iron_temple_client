@@ -4,8 +4,9 @@ const SubscriptionList = ({ subscription }) => {
 	const { user } = useAuthContext();
 
 	const subscriptionStatus = {
-		ACTIVE: "badge badge-success text-white",
-		EXPIRED: "badge bg-red-500 text-white",
+		ACTIVE: "badge badge-info text-white",
+		PAID: "badge badge-success text-white",
+		EXPIRED: "badge badge-warning text-white",
 		CANCELLED: "badge badge-error text-white",
 	};
 

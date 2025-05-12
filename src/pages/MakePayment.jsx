@@ -41,9 +41,6 @@ const Payment = () => {
 		}
 	};
 
-	// handling subscription payment
-	const handlePayment = async () => {};
-
 	if (loading) return <Spinner />;
 
 	return (
