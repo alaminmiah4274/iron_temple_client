@@ -15,18 +15,16 @@ const Subscriptions = () => {
 			.finally(() => setLoading(false));
 	}, []);
 
+	if (loading) return <Spinner />;
+
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
 				<h3 className="text-xl">Subscriptions</h3>
 
-				{loading ? (
-					<Spinner />
-				) : (
-					<div className="overflow-x-auto">
-						<SubscriptionTable subscriptions={subscriptions} />
-					</div>
-				)}
+				<div className="overflow-x-auto">
+					<SubscriptionTable subscriptions={subscriptions} />
+				</div>
 			</div>
 		</div>
 	);

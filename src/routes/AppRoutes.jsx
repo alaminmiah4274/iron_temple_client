@@ -22,6 +22,10 @@ import Classes from "../pages/Classes";
 import Profile from "../pages/Profile";
 import Bookings from "../pages/Bookings";
 import MakePayment from "../pages/MakePayment";
+import AddReview from "../pages/AddReview";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
+import CustomerFeedbacks from "../pages/CustomerFeedbacks";
 
 const AppRoutes = () => {
 	return (
@@ -35,6 +39,12 @@ const AppRoutes = () => {
 				<Route
 					path="/activate/:uid/:token"
 					element={<ActivateAccount />}
+				/>
+				<Route path="about" element={<About />} />
+				<Route path="contact" element={<Contact />} />
+				<Route
+					path="customer/feedback"
+					element={<CustomerFeedbacks />}
 				/>
 			</Route>
 
@@ -60,6 +70,7 @@ const AppRoutes = () => {
 				<Route path="attendance/add" element={<AddAttendance />} />
 				<Route path="profile" element={<Profile />} />
 				<Route path="makePayment" element={<MakePayment />} />
+				<Route path="review/add" element={<AddReview />} />
 			</Route>
 		</Routes>
 	);

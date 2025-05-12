@@ -29,6 +29,11 @@ const Sidebar = () => {
 			icon: MdOutlinePayment,
 			label: "Make Payment",
 		},
+		{
+			to: "/dashboard/review/add",
+			icon: FiPlusCircle,
+			label: "Give Review",
+		},
 	];
 	const adminMenus = [
 		{ to: "/dashboard", icon: FiBarChart2, label: "Dashboard" },
@@ -101,7 +106,7 @@ const Sidebar = () => {
 
 				{/*Sidebar footer*/}
 				<div className="mt-auto pt-6 text-xs text-base-content/70">
-					2025 <span className="italic">Iron Temple</span> Admin
+					2025 <span className="italic">Iron Temple</span> {user.role}
 				</div>
 			</aside>
 		</div>

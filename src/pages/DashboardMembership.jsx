@@ -15,18 +15,16 @@ const DashboardMembership = () => {
 			.finally(() => setMembershipLoading(false));
 	}, []);
 
+	if (membershipLoading) return <Spinner />;
+
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
 				<h3 className="text-xl">Memberships</h3>
 
-				{membershipLoading ? (
-					<Spinner />
-				) : (
-					<div className="overflow-x-auto">
-						<DashboardMembershipTable memberships={memberships} />
-					</div>
-				)}
+				<div className="overflow-x-auto">
+					<DashboardMembershipTable memberships={memberships} />
+				</div>
 			</div>
 		</div>
 	);

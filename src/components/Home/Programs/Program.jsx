@@ -18,7 +18,7 @@ const Program = () => {
 	}, []);
 
 	return (
-		<section className="my-[100px] md:my-[200px]">
+		<section className="my-[100px] md:my-[150px]">
 			{/* HEADLINE OF THE PROGRAM (FITNESS CALSS HOME PAGE) SECTION */}
 			<div className="flex flex-col items-center justify-center mb-10">
 				<h1 className="text-4xl md:text-5xl text-center font-semibold mb-5 md:mb-10">

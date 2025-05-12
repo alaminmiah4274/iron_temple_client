@@ -36,7 +36,7 @@ const Facility = () => {
 	];
 
 	return (
-		<section className="my-[100px]">
+		<section className="my-[100px] md:my-[150px]">
 			<div className="flex flex-col items-center justify-center mb-10">
 				<h1 className="text-4xl md:text-5xl text-center px-3 md:px-0 font-semibold mb-5 md:mb-10">
 					Why Choose Us

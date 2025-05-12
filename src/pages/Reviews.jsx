@@ -20,21 +20,16 @@ const Reviews = () => {
 		return format(new Date(date), "MMMM d, yyyy");
 	};
 
+	if (loading) return <Spinner />;
+
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
 				<h3 className="text-xl">Reviews</h3>
 
-				{loading ? (
-					<Spinner />
-				) : (
-					<div className="overflow-x-auto">
-						<ReviewTable
-							reviews={reviews}
-							formatDate={formatDate}
-						/>
-					</div>
-				)}
+				<div className="overflow-x-auto">
+					<ReviewTable reviews={reviews} formatDate={formatDate} />
+				</div>
 			</div>
 		</div>
 	);

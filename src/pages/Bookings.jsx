@@ -22,21 +22,16 @@ const Bookings = () => {
 		return format(new Date(date), "MMMM d, yyyy");
 	};
 
+	if (bookingLoading) return <Spinner />;
+
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
 				<h3 className="text-xl">Bookings</h3>
 
-				{bookingLoading ? (
-					<Spinner />
-				) : (
-					<div className="overflow-x-auto text-xs md:text-lg">
-						<BookingTable
-							bookings={bookings}
-							formatDate={formatDate}
-						/>
-					</div>
-				)}
+				<div className="overflow-x-auto text-xs md:text-lg">
+					<BookingTable bookings={bookings} formatDate={formatDate} />
+				</div>
 			</div>
 		</div>
 	);

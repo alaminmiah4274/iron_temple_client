@@ -15,18 +15,16 @@ const Attendance = () => {
 			.finally(() => setLoading(false));
 	}, []);
 
+	if (loading) return <Spinner />;
+
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
 				<h3 className="text-xl">Attendance</h3>
 
-				{loading ? (
-					<Spinner />
-				) : (
-					<div className="overflow-x-auto text-xs md:text-lg">
-						<AttendanceTable attendances={attendances} />
-					</div>
-				)}
+				<div className="overflow-x-auto text-xs md:text-lg">
+					<AttendanceTable attendances={attendances} />
+				</div>
 			</div>
 		</div>
 	);

@@ -3,7 +3,7 @@ import contactImg from "/src/assets/contact/contact.jpg";
 
 const Contact = () => {
 	return (
-		<section className="bg-white mb-20 md:mb-[200px] container mx-auto">
+		<section className="bg-white my-[100px] md:my-[150px] container mx-auto">
 			<div className="flex flex-col md:flex-row md:gap-x-10 items-center justify-center">
 				<div className="w-full">
 					<img src={contactImg} alt="" />

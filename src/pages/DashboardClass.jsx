@@ -15,18 +15,16 @@ const DashboardClass = () => {
 			.finally(() => setClassesLoading(false));
 	}, []);
 
+	if (classesLoading) return <Spinner />;
+
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
 				<h3 className="text-xl">Classes</h3>
 
-				{classesLoading ? (
-					<Spinner />
-				) : (
-					<div className="overflow-x-auto">
-						<DashboardClassTable fitnessClasses={fitnessClasses} />
-					</div>
-				)}
+				<div className="overflow-x-auto">
+					<DashboardClassTable fitnessClasses={fitnessClasses} />
+				</div>
 			</div>
 		</div>
 	);

@@ -14,42 +14,40 @@ const Users = () => {
 			.finally(() => setUserLoading(false));
 	}, []);
 
+	if (userLoading) return <Spinner />;
+
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
 				<h3 className="text-xl">Users</h3>
 
-				{userLoading ? (
-					<Spinner />
-				) : (
-					<div className="overflow-x-auto">
-						<table className="table table-zebra">
-							<thead>
-								<tr>
-									<th>User Id</th>
-									<th>Name</th>
-									<th>Email</th>
-									<th>Role</th>
+				<div className="overflow-x-auto">
+					<table className="table table-zebra">
+						<thead>
+							<tr>
+								<th>User Id</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Role</th>
+							</tr>
+						</thead>
+						<tbody>
+							{users.map((user) => (
+								<tr key={user.id}>
+									<td>{user.id}</td>
+									<td>
+										{user.first_name} {user.last_name}
+									</td>
+									<td>{user.email}</td>
+									<td>
+										<div>{user.role}</div>
+									</td>
+									<td></td>
 								</tr>
-							</thead>
-							<tbody>
-								{users.map((user) => (
-									<tr key={user.id}>
-										<td>{user.id}</td>
-										<td>
-											{user.first_name} {user.last_name}
-										</td>
-										<td>{user.email}</td>
-										<td>
-											<div>{user.role}</div>
-										</td>
-										<td></td>
-									</tr>
-								))}
-							</tbody>
-						</table>
-					</div>
-				)}
+							))}
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	);

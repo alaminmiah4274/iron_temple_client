@@ -54,7 +54,7 @@ const CustomerFeedbacks = () => {
 	];
 	// className="max-w-4xl mx-auto px-4 py-12"
 	return (
-		<div className="max-w-5xl mx-auto mt-[150px] md:mt-[200px]">
+		<div className="max-w-5xl mx-auto my-[100px] md:my-[150px]">
 			<div className="flex flex-col md:flex-row items-center gap-8">
 				{/* Static Image Section */}
 				<div className="w-full md:w-1/2">

@@ -20,21 +20,16 @@ const Payment = () => {
 		return format(new Date(date), "MMMM d, yyyy");
 	};
 
+	if (loading) return <Spinner />;
+
 	return (
 		<div className="mt-6 card bg-white shadow-sm">
 			<div className="card-body">
 				<h3 className="text-xl">Payments</h3>
 
-				{loading ? (
-					<Spinner />
-				) : (
-					<div className="overflow-x-auto">
-						<PaymentTable
-							payments={payments}
-							formatDate={formatDate}
-						/>
-					</div>
-				)}
+				<div className="overflow-x-auto">
+					<PaymentTable payments={payments} formatDate={formatDate} />
+				</div>
 			</div>
 		</div>
 	);
