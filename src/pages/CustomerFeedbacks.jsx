@@ -6,52 +6,24 @@ import reviewImg from "../assets/about/review_img.png";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
+import { useEffect, useState } from "react";
+import apiClient from "../services/api_client";
+import Spinner from "../components/Spinner";
 
 const CustomerFeedbacks = () => {
-	const feedbacks = [
-		{
-			id: 1,
-			quote: "Iron Temple has the best powerlifting equipment in the city. The 24/7 access lets me train whenever my schedule allows.",
-			author: "Mark R.",
-			role: "Competitive Powerlifter",
-			duration: "Member since 2019",
-		},
-		{
-			id: 2,
-			quote: "As a bodybuilder, I appreciate the variety of Hammer Strength machines. The atmosphere keeps me motivated for every session.",
-			author: "Lisa T.",
-			role: "NPC Competitor",
-			duration: "3 years at Iron Temple",
-		},
-		{
-			id: 3,
-			quote: "The strongman area with atlas stones and logs is unmatched. Finally a gym that understands functional strength training!",
-			author: "Derek S.",
-			role: "Strongman Athlete",
-			duration: "Member for 18 months",
-		},
-		{
-			id: 4,
-			quote: "Clean facilities with abundant sanitizing stations. The owners actually care about member experience, not just profits.",
-			author: "Naomi K.",
-			role: "Physical Therapist",
-			duration: "6-month member",
-		},
-		{
-			id: 5,
-			quote: "Best gym for Olympic lifting - proper platforms, bumper plates, and coaches who know weightlifting technique inside out.",
-			author: "Carlos M.",
-			role: "CrossFit Coach",
-			duration: "Member since 2020",
-		},
-		{
-			id: 6,
-			quote: "The community here pushed me to deadlift 500lbs. Not just a gym, but a family of serious lifters who support each other.",
-			author: "Jenny L.",
-			role: "Powerlifting Enthusiast",
-			duration: "2 years at Iron Temple",
-		},
-	];
+	const [reviews, setReviews] = useState([]);
+	const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		setLoading(true);
+		apiClient
+			.get("/feedback/")
+			.then((res) => setReviews(res.data))
+			.finally(() => setLoading(false));
+	}, []);
+
+	if (loading) return <Spinner />;
+
 	// className="max-w-4xl mx-auto px-4 py-12"
 	return (
 		<div className="max-w-5xl mx-auto my-[100px] md:my-[150px]">
@@ -89,21 +61,26 @@ const CustomerFeedbacks = () => {
 							spaceBetween={30}
 							slidesPerView={1}
 						>
-							{feedbacks.map((feedback) => (
-								<SwiperSlide key={feedback.id}>
+							{reviews.map((review) => (
+								<SwiperSlide key={review.id}>
 									<div className="p-8">
 										<div className="text-xl italic font-medium text-gray-800 mb-6">
-											"{feedback.quote}"
+											"{review.comment}"
 										</div>
 										<div className="space-y-1">
 											<div className="text-lg font-bold text-rose-600">
-												{feedback.author}
+												{review.user.first_name
+													? review.user.first_name
+													: "A"}{" "}
+												{review.user.last_name
+													? review.user.last_name
+													: "Bodybuilder"}
 											</div>
 											<div className="text-gray-600">
-												{feedback.role}
+												{review.user.email}
 											</div>
 											<div className="text-sm text-gray-500">
-												{feedback.duration}
+												{review.duration}
 											</div>
 										</div>
 									</div>
