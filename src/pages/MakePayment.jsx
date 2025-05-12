@@ -52,6 +52,10 @@ const Payment = () => {
 					onCancel={handleSubscriptionCancel}
 				/>
 			))}
+
+			{bookedSubscriptions.length === 0 && (
+				<div className="text-center">No subscriptions available</div>
+			)}
 		</>
 	);
 };

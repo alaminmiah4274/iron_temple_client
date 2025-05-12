@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import apiClient from "../services/api_client";
 import authApiClient from "../services/auth_api_client";
 
@@ -17,26 +17,26 @@ const useAuth = () => {
 	const [authTokens, setAuthTokens] = useState(getToken());
 
 	// to handle api related error
-	const handleAPIError = (
-		error,
-		defaultMessage = "Something Went Wrong! Try Again"
-	) => {
-		if (error.response && error.response.data) {
-			const errorMessage = Object.values(error.response.data)
-				.flat()
-				.join("\n");
-			setErrorMessage(errorMessage);
+	const handleAPIError = useCallback(
+		(error, defaultMessage = "Something Went Wrong! Try Again") => {
+			if (error.response && error.response.data) {
+				const errorMessage = Object.values(error.response.data)
+					.flat()
+					.join("\n");
+				setErrorMessage(errorMessage);
 
-			return { success: false, message: defaultMessage };
-		} else {
-			setErrorMessage(defaultMessage);
+				return { success: false, message: defaultMessage };
+			} else {
+				setErrorMessage(defaultMessage);
 
-			return { success: false, message: defaultMessage };
-		}
-	};
+				return { success: false, message: defaultMessage };
+			}
+		},
+		[]
+	);
 
 	// to get the current user
-	const fetchUserProfile = async () => {
+	const fetchUserProfile = useCallback(async () => {
 		setLoading(true);
 		setErrorMessage("");
 		try {
@@ -49,7 +49,7 @@ const useAuth = () => {
 		} catch (err) {
 			setErrorMessage(err.response?.data?.detail);
 		}
-	};
+	}, [authTokens]);
 
 	// to fetch the current user after every render(refresh)
 	useEffect(() => {
@@ -57,75 +57,90 @@ const useAuth = () => {
 	}, [authTokens]);
 
 	// to login the user
-	const loginUser = async (userData) => {
-		setErrorMessage("");
-		try {
-			const response = await apiClient.post(
-				"/auth/jwt/create/",
-				userData
-			);
-			setAuthTokens(response.data);
-			localStorage.setItem("authTokens", JSON.stringify(response.data));
+	const loginUser = useCallback(
+		async (userData) => {
+			setErrorMessage("");
+			try {
+				const response = await apiClient.post(
+					"/auth/jwt/create/",
+					userData
+				);
+				setAuthTokens(response.data);
+				localStorage.setItem(
+					"authTokens",
+					JSON.stringify(response.data)
+				);
 
-			return { success: true };
-		} catch (err) {
-			setErrorMessage(err.response?.data?.detail);
-			return { success: false };
-		}
-	};
+				return { success: true };
+			} catch (err) {
+				setErrorMessage(err.response?.data?.detail);
+				return { success: false };
+			}
+		},
+		[setAuthTokens, setErrorMessage]
+	);
 
 	// to logout the user
-	const logoutUser = () => {
+	const logoutUser = useCallback(() => {
 		setUser(null);
 		setAuthTokens(null);
 
 		localStorage.removeItem("authTokens");
-	};
+	}, [setUser, setAuthTokens]);
 
 	// to register a new user
-	const registerUser = async (userData) => {
-		setErrorMessage("");
+	const registerUser = useCallback(
+		async (userData) => {
+			setErrorMessage("");
 
-		try {
-			await apiClient.post("/auth/users/", userData);
+			try {
+				await apiClient.post("/auth/users/", userData);
 
-			return {
-				success: true,
-				message:
-					"Registration successful. Please check your email to activate your account",
-			};
-		} catch (err) {
-			return handleAPIError(err, "Registration Failed! Try Again");
-		}
-	};
+				return {
+					success: true,
+					message:
+						"Registration successful. Please check your email to activate your account",
+				};
+			} catch (err) {
+				return handleAPIError(err, "Registration Failed! Try Again");
+			}
+		},
+		[handleAPIError, setErrorMessage]
+	);
 
 	// to update an user
-	const updateUserProfile = async (data) => {
-		setErrorMessage("");
-		setSuccessMessage("");
+	const updateUserProfile = useCallback(
+		async (data) => {
+			setErrorMessage("");
+			setSuccessMessage("");
 
-		try {
-			await authApiClient.put("/auth/users/me/", data);
+			try {
+				await authApiClient.put("/auth/users/me/", data);
 
-			setSuccessMessage("Profile successfully updated");
-		} catch (err) {
-			return handleAPIError(err);
-		}
-	};
+				setSuccessMessage("Profile successfully updated");
+			} catch (err) {
+				return handleAPIError(err);
+			}
+		},
+		[handleAPIError, setErrorMessage, setSuccessMessage]
+	);
 
 	// to change user password
-	const changePassword = async (data) => {
-		setErrorMessage("");
-		setSuccessMessage("");
+	const changePassword = useCallback(
+		async (data) => {
+			setErrorMessage("");
+			setSuccessMessage("");
 
-		try {
-			await authApiClient.post("/auth/users/set_password/", data);
+			try {
+				await authApiClient.post("/auth/users/set_password/", data);
 
-			setSuccessMessage("Password changed successfully");
-		} catch (err) {
-			return handleAPIError(err);
-		}
-	};
+				setSuccessMessage("Password changed successfully");
+			} catch (err) {
+				return handleAPIError(err);
+			}
+		},
+		[handleAPIError, setErrorMessage, setSuccessMessage]
+	);
 
 	return {
 		loading,

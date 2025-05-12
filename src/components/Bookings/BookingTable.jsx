@@ -18,7 +18,7 @@ const BookingTable = ({ bookings, formatDate }) => {
 			<tbody>
 				{bookings.map((booking) => (
 					<BookingList
-						key={booking}
+						key={booking.id}
 						booking={booking}
 						formatDate={formatDate}
 					/>
