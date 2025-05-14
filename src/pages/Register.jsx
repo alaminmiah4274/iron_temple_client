@@ -14,6 +14,7 @@ const Register = () => {
 		register,
 		handleSubmit,
 		watch,
+		reset,
 		formState: { errors },
 	} = useForm();
 
@@ -31,6 +32,9 @@ const Register = () => {
 		} finally {
 			setLoading(false);
 		}
+
+		// reseting the form after submission
+		reset();
 	};
 
 	return (

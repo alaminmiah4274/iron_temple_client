@@ -9,6 +9,7 @@ import "swiper/css/navigation";
 import { useEffect, useState } from "react";
 import apiClient from "../services/api_client";
 import Spinner from "../components/Spinner";
+import FeedbackSlide from "../components/CustomerFeedbacks/FeedbackSlide";
 
 const CustomerFeedbacks = () => {
 	const [reviews, setReviews] = useState([]);
@@ -52,38 +53,25 @@ const CustomerFeedbacks = () => {
 					<div className="relative">
 						<Swiper
 							modules={[Navigation, Autoplay]}
-							loop={true}
+							loop={false}
 							navigation={{
 								nextEl: ".feedback-next",
 								prevEl: ".feedback-prev",
 							}}
-							autoplay={{ delay: 4000, pauseOnMouseEnter: true }}
+							autoplay={{
+								delay: 3000,
+								pauseOnMouseEnter: true,
+								stopOnLastSlide: false,
+								disableOnInteraction: false,
+								reverseDirection: false,
+								waitForTransition: true,
+							}}
 							spaceBetween={30}
 							slidesPerView={1}
 						>
 							{reviews.map((review) => (
 								<SwiperSlide key={review.id}>
-									<div className="p-8">
-										<div className="text-xl italic font-medium text-gray-800 mb-6">
-											"{review.comment}"
-										</div>
-										<div className="space-y-1">
-											<div className="text-lg font-bold text-rose-600">
-												{review.user.first_name
-													? review.user.first_name
-													: "A"}{" "}
-												{review.user.last_name
-													? review.user.last_name
-													: "Bodybuilder"}
-											</div>
-											<div className="text-gray-600">
-												{review.user.email}
-											</div>
-											<div className="text-sm text-gray-500">
-												{review.duration}
-											</div>
-										</div>
-									</div>
+									<FeedbackSlide review={review} />
 								</SwiperSlide>
 							))}
 						</Swiper>

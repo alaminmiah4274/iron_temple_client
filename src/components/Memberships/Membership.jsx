@@ -39,23 +39,25 @@ const Membership = () => {
 
 	// to subscribe membership
 	const handleMembershipSubscription = async (membershipId) => {
+		// preventing the user from subscribing without login
 		if (user) {
-			try {
-				const response = await authApiClient.post("/subscriptions/", {
-					membership_id: membershipId,
-				});
-				console.log(response);
-				if (response.status === 201) {
-					alert("Your subscription is done");
-				}
-				navigate("/dashboard/makePayment");
-			} catch (err) {
-				if (err.response.status === 400) {
-					alert(err.response?.data[0]);
-				}
-			}
-		} else {
 			alert("You need to log in");
+			return;
+		}
+
+		try {
+			const response = await authApiClient.post("/subscriptions/", {
+				membership_id: membershipId,
+			});
+			console.log(response);
+			if (response.status === 201) {
+				alert("Your subscription is done");
+			}
+			navigate("/dashboard/makePayment");
+		} catch (err) {
+			if (err.response.status === 400) {
+				alert(err.response?.data[0]);
+			}
 		}
 	};
 

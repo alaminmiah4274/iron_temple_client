@@ -37,22 +37,24 @@ const FitnessClassPage = () => {
 
 	// to book fitness class
 	const handleFitnessClassBooking = async (classId) => {
+		// preventing the user from booking without login
 		if (user) {
-			try {
-				const response = await authApiClient.post("/bookings/", {
-					fitness_class: classId,
-				});
-
-				if (response.status === 200) {
-					alert(response.data.status);
-				}
-			} catch (err) {
-				if (err.status === 400) {
-					alert(err.response?.data?.non_field_errors[0]);
-				}
-			}
-		} else {
 			alert("You need to log in");
+			return;
+		}
+
+		try {
+			const response = await authApiClient.post("/bookings/", {
+				fitness_class: classId,
+			});
+
+			if (response.status === 200) {
+				alert(response.data.status);
+			}
+		} catch (err) {
+			if (err.status === 400) {
+				alert(err.response?.data?.non_field_errors[0]);
+			}
 		}
 	};
 

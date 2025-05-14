@@ -11,6 +11,7 @@ const Login = () => {
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm();
 
@@ -26,6 +27,9 @@ const Login = () => {
 		} finally {
 			setLoading(false);
 		}
+
+		// reseting the form after submission
+		reset();
 	};
 
 	return (
@@ -73,6 +77,7 @@ const Login = () => {
 								})}
 								id="password"
 								type="password"
+								autoComplete="true"
 								placeholder=".........."
 								className={`input input-bordered w-full ${
 									errors.password ? "input-error" : ""
