@@ -18,7 +18,7 @@ const Payment = () => {
 
 	// filtering only booked subscriptions
 	const bookedSubscriptions = subscriptions.filter(
-		(sub) => sub.status === "ACTIVE"
+		(sub) => sub.status === "ACTIVE" || sub.status === "PAID"
 	);
 
 	// handling subscription's cancel status

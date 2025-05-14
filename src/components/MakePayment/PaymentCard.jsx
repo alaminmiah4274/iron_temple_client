@@ -31,12 +31,16 @@ const PaymentCard = ({ sub, onCancel }) => {
 	return (
 		<div className="bg-white rounded-lg shadow-lg mb-8 overflow-hidden">
 			<div className="bg-gray-100 p-6">
-				<button
-					onClick={() => onCancel(sub.id)}
-					className="text-rose-600 hover:underline cursor-pointer"
-				>
-					Cancel
-				</button>
+				{sub.status === "PAID" ? (
+					<div className="badge badge-success text-white">PAID</div>
+				) : (
+					<button
+						onClick={() => onCancel(sub.id)}
+						className="text-rose-600 hover:underline cursor-pointer"
+					>
+						Cancel
+					</button>
+				)}
 			</div>
 			<div className="p-6">
 				{/* Subscriptions Table  */}
@@ -59,13 +63,15 @@ const PaymentCard = ({ sub, onCancel }) => {
 						<span>${sub.membership.price}</span>
 					</div>
 				</div>
-				<button
-					onClick={handlePayment}
-					disabled={paymentLoading}
-					className="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
-				>
-					{paymentLoading ? "Processing..." : "Pay Now"}
-				</button>
+				{sub.status !== "PAID" && (
+					<button
+						onClick={handlePayment}
+						disabled={paymentLoading}
+						className="mt-4 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
+					>
+						{paymentLoading ? "Processing..." : "Pay Now"}
+					</button>
+				)}
 			</div>
 		</div>
 	);
